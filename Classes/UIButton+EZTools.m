@@ -14,7 +14,7 @@
 - (void)setClickBlk:(UIButtonClickBlock)clickBlk
 {
     objc_setAssociatedObject(self, (__bridge void *)self, clickBlk,   OBJC_ASSOCIATION_COPY_NONATOMIC);
-    if (![self.allTargets containsObject:self]) {
+    if (!([self.allTargets containsObject:self] && [self actionsForTarget:self forControlEvent:UIControlEventTouchUpInside])) {
         [self addTarget:self action:@selector(buttonClickedInternal:) forControlEvents:UIControlEventTouchUpInside];
     }
 }
